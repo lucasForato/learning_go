@@ -26,22 +26,27 @@ func main() {
 		ClearScreen()
 		board.PrintBoard()
 
+		var player Player = X
+
+		hasWinner, player := board.GetWinner()
+		if hasWinner {
+			fmt.Println("There is a winner:", string(player))
+			break
+		}
+
 		var x string
 		var y int8
 		fmt.Print("Type the X coordinate (A, B, C): ")
 		fmt.Scan(&x)
-		fmt.Println(x)
 
 		fmt.Print("Type the Y coordinate(1, 2, 3): ")
 		fmt.Scan(&y)
 
 		var vec, err = makeCoordinate(x, y)
 		if err != nil {
-			fmt.Printf("Error: %v\n", err)
 			continue
 		}
 
-		var player Player = X
 		if counter%2 == 0 {
 			player = X
 		} else {
@@ -49,12 +54,7 @@ func main() {
 		}
 
 		board.RecordMove(player, vec)
-
-		hasWinner, player := board.GetWinner()
-		if hasWinner {
-			fmt.Println("There is a winner:", player)
-			break
-		}
+		counter++
 	}
 
 }
