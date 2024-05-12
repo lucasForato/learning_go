@@ -10,12 +10,25 @@ type Vec2 struct {
 }
 
 func (b *Board) PrintBoard() {
-	for _, row := range b {
-		for _, cell := range row {
-			fmt.Printf("%c", cell)
+	for i, row := range b {
+		if i == 0 {
+			fmt.Println("  A   B   C ")
+		}
+		for j, cell := range row {
+			if j == 0 {
+				fmt.Printf("%v", i+1)
+			}
+			fmt.Printf(" %c ", cell)
+			if j < 2 {
+				fmt.Printf("|")
+			}
 		}
 		fmt.Printf("\n")
+		if i < 2 {
+			fmt.Printf(" ---|---|--- \n")
+		}
 	}
+  fmt.Printf("\n")
 }
 
 type Player rune
