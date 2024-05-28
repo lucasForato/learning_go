@@ -43,7 +43,7 @@ func (b *Board) RecordMove(player Player, position Vec2) {
 		panic("Invalid player")
 	}
 
-	b[position.x][position.y] = rune(player)
+	b[position.y][position.x] = rune(player)
 }
 
 func (b *Board) GetWinner() (bool, Player) {
